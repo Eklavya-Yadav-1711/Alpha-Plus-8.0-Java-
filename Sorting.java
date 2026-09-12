@@ -2,14 +2,14 @@ import java.util.Arrays;
 
 public class Sorting {
     public static void main(String[] args) {
-        int nums[] = {1,2,4,3,5,8,6,1};
-        // bubbleSort(nums);
+        int nums[] = {2,2,1,1,1,2,2};
+        bubbleSort(nums);
         // selectionSort(nums);
         // selectionSort(nums);
         // Arrays.sort(nums, 0, 6);
         // System.out.println(Arrays.toString(nums));
-        countingSort(nums);
-        System.out.println(Arrays.toString(nums));
+        // countingSort(nums);
+        // System.out.println(Arrays.toString(nums));
     }
 
 
