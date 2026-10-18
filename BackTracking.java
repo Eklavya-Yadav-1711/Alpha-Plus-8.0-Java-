@@ -8,7 +8,10 @@ public class BackTracking {
 
 
         String str = "abc" ;
-        findSubsets(str, "", 0);
+        // findSubsets(str, "", 0);
+    
+        findPermutaion(str, "");
+        
     }
 
 
@@ -55,6 +58,23 @@ public class BackTracking {
         findSubsets(str, ans, i+1);
     }
 
+
+
+    //findPerumation
+
+    public static void findPermutaion(String str, String ans){
+        //base case
+        if(str.length() == 0){
+            System.out.println(ans);
+        }
+
+        //recursion
+        for(int i = 0; i < str.length() ; i++){
+            char curr = str.charAt(i);
+            String NewStr = str.substring(0,i) + str.substring(i+1);
+            findPermutaion(NewStr, ans+curr);
+        }
+    }
 
 
 }
