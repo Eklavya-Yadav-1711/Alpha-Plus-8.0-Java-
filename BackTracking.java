@@ -6,16 +6,80 @@ public class BackTracking {
         // changeArr(arr,0,1);
         // System.out.println(Arrays.toString(arr));
 
-
-        String str = "abc" ;
-        // findSubsets(str, "", 0);
+//-----------------------------------------------------
+        // String str = "abc" ;
+        // // findSubsets(str, "", 0);
     
-        findPermutaion(str, "");
+        // findPermutaion(str, "");
+
+
+//-----------------------------------------------------
+        int n = 4;
+        char board[][] = new char[n][n];
+
+        //initialize
+        for(int i = 0; i< n ; i++){
+            for(int j = 0 ; j < n ; j++){
+                board[i][j] = 'X';
+            }
+        }
+
+        nQueens(board, 0);
         
     }
 
 
+//------------------------------------------------------
 
+        //N - QUEENS -----
+
+    public static void nQueens(char board[][], int row){
+        //base
+        if(row== board.length){
+            printBoard(board);
+            return ;
+        }
+
+        //column
+
+        for(int j = 0; j < board.length; j++ ){
+            if(isSafe(board, row, j)){
+            board[row][j] = 'Q';    //putting Q in each row
+            nQueens(board, row+1); //functional call
+            board[row][j] = 'X';  //backtracking call
+            }
+        }
+    }
+
+    public static boolean isSafe(char board[][], int row, int col){
+        //veritcal up  -- (i-1,j)
+        for(int i = row - 1; i>=0 ; i--){
+            if(board[i][col] == 'Q'){
+                return false ;
+            }
+        }
+
+        // diagonal up left -- (i-1,j-1)
+        for(int i = row - 1, j = col - 1; i>=0 && j>= 0 ; i--,j--){
+            if(board[i][j] == 'Q'){
+                return false ;
+            }
+        }
+        // diagonal up right --(i-1,j+1)
+
+        for(int i = row - 1, j = col + 1; i>=0 && j< board.length ; i--,j++){
+            if(board[i][j] == 'Q'){
+                return false;
+            }
+        }
+
+        return true ;
+    }
+
+
+
+
+    //change Array-----
 
     public static void changeArr(int arr[], int i, int val){
         //base case
@@ -32,8 +96,18 @@ public class BackTracking {
     }
 
 
+    public static void printBoard(char board[][]){
+        System.out.println("--------chess board---------");
+        for(int i = 0; i < board.length; i++){
+            for(int j = 0; j < board.length; j++){
+                System.out.print(board[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
 
-    //FIND SUBSETS
+
+    //FIND SUBSETS------
 
     public static void findSubsets(String str, String ans, int i){
 
@@ -60,7 +134,7 @@ public class BackTracking {
 
 
 
-    //findPerumation
+    //findPerumation-----
 
     public static void findPermutaion(String str, String ans){
         //base case
@@ -75,6 +149,11 @@ public class BackTracking {
             findPermutaion(NewStr, ans+curr);
         }
     }
+
+
+
+
+
 
 
 }
